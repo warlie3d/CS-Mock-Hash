@@ -17,10 +17,10 @@ let globalStore = {}
 checkPassword = async (username, plaintextPassword) => {
     // TODO: Make sure to delete this console.log once you're done implementing the function!
     //console.log('\n Uh-oh, checkPassword is not yet implemented. 😢')
-    // Ensure global store contains the user 
-    // (this is a quick way to check if an object contains a key)
+    
     if (globalStore[username]) {
         try {
+            // Ensure global store contains the user 
             const result = await bcrypt.compare(plaintextPassword, globalStore[username])
             if (result) {
                 // TODO: Display message for valid credentials
@@ -46,7 +46,7 @@ checkPassword = async (username, plaintextPassword) => {
 hashPassword = async (username, password) => {
     try {
         //Generate a salt
-        const saltRounds = 10;
+        const saltRounds = 12;
         const salt = await bcrypt.genSalt(saltRounds);
 
         const hashedPassword = await bcrypt.hash(password, salt)
